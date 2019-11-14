@@ -13,5 +13,8 @@ after_success:
   - docker build -t ubik74/multi-nginx ./nginx
   - docker build -t ubik74/multi-server ./server
   - docker build -t ubik74/multi-worker ./worker
-
-  
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push ubik74/multi-client
+  - docker push ubik74/multi-nginx
+  - docker push ubik74/multi-server
+  - docker push ubik74/multi-worker
